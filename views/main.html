@@ -7,7 +7,6 @@
 			<span class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand" href="#">Buzzword Bingo</a>
-		<a class="navbar-brand" href="/scroll-to-top.html">Scroll to Top demo</a>
 	</div>
 
 	<div class="collapse navbar-collapse navbar-ex8-collapse">
@@ -19,14 +18,23 @@
 
 <div class="wrapper">
 	<div class="row" id="board">
-		<div ng-model="buzzwords" class="col-md-12">
-			<div class="text-center square" toggle="checkBoard($index)" ng-repeat="buzzword in buzzwords">
-  				<span>{{buzzword.term}}</span>
+		<div class="text-center" ng-repeat="buzzword in buzzwords">
+			<div class="flip-container square {{buzzword.selected && 'selected' || ''}}" toggle="checkBoard($index)">
+				<div class="flipper">
+					<!-- front -->
+					<div class="front">
+  						<span>{{buzzword.term}}</span>
+					</div>
+					<!-- back -->
+					<div class="back">
+  						<span>{{buzzword.term}}</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="zippy" zippy-title="Title from attr">
+	<div class="row" zippy-title="Title from attr">
 		Title in markup
 		<form class="form-horizontal" role="form">
 			<fieldset>
