@@ -11,21 +11,25 @@
 
 	<div class="collapse navbar-collapse navbar-ex8-collapse">
 		<ul class="nav navbar-nav pull-right">
-			<li class="active"><a target="_self" href="/">Play again</a></li>
+			<li ng-click="toggleEditMode()">
+				<a>Edit Board</a>
+			</li>
+			<li class="active">
+				<a target="_self" href="/">Play again</a>
+			</li>
 		</ul>
 	</div>
 </nav>
 
+<!--
 <div class="wrapper">
 	<div class="row" id="board">
 		<div class="text-center" ng-repeat="buzzword in buzzwords">
 			<div class="flip-container square {{buzzword.selected && 'selected' || ''}}" toggle="checkBoard($index)">
 				<div class="flipper">
-					<!-- front -->
 					<div class="front">
   						<span>{{buzzword.term}}</span>
 					</div>
-					<!-- back -->
 					<div class="back">
   						<span>{{buzzword.term}}</span>
 					</div>
@@ -33,14 +37,46 @@
 			</div>
 		</div>
 	</div>
+-->
 
+<div class="header content">BINGO</div>
+
+<div class="wrapper">
+	<div class="row" id="board">
+		<div id="flip-container" class="blah" ng-class="{'flip': editMode}">
+			<div class="flipper">
+				<table class="front table table-bordered table-hovered">
+					<tbody>
+						<tr ng-repeat="(row, group) in board.buzzwords">
+		         			<td class="square" ng-repeat="(column, buzzword) in group" toggle="checkBoard($parent.$index, $index)" ng-class="{selected: row == 2 && column == 2}">
+		         				<span ng-class="{star: row == 2 && column == 2}">
+		  							{{buzzword.term}}
+		  						</span>
+		        			</td>
+		     			</tr>
+		     		</tbody>
+		     	</table>
+				<table class="back table table-bordered table-hovered">
+					<tbody>
+						<tr ng-repeat="group in board.buzzwords">
+		         			<td class="square" ng-repeat="buzzword in group">
+		         				<textarea ng-model="buzzword.term"></textarea>
+		        			</td>
+		     			</tr>
+		     		</tbody>
+		     	</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--
 	<div class="row" zippy-title="Title from attr">
 		Title in markup
 		<form class="form-horizontal" role="form">
 			<fieldset>
 	    		<legend>Edit Buzzwords</legend>
 		 		<div class="form-group">
-					<div ui-sortable="" ng-model="buzzwords">
+					<div ui-sortable ng-model="buzzwords">
 						<div class="col-lg-3" ng-repeat="buzzword in buzzwords">
 					  		<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 					  		<input class="form-control input-lg" type="text" ng-model="buzzword.term">
@@ -50,7 +86,8 @@
 			</fieldset>
 		</form>
 	</div>
-</div>
+-->
+
 <footer>
 	<span>Enjoy <br>-- j0shua </span>
 </footer>
