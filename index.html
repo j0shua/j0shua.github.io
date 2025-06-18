@@ -1,65 +1,436 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>J0shua.github.io by j0shua</title>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>j0shua - Technology & Team Leadership</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>J0shua.github.io</h1>
+    <style>
+        /* Using a more modern font like Google Sans if available, with Roboto as a fallback */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3, h4, .font-googlesans {
+            font-family: 'Google Sans', 'Roboto', sans-serif;
+        }
+        /* Custom styles for the timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem; 
+            padding-bottom: 2rem;
+            border-left: 2px solid #e2e8f0;
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.5625rem; /* (20px-2px)/2 -> 9px -> 0.5625rem */
+            top: 0.25rem;
+            height: 1.25rem;
+            width: 1.25rem;
+            background-color: white;
+            border: 2px solid #3b82f6; /* blue-500 */
+            border-radius: 50%;
+        }
+        /* Style for the AI generated content */
+        .ai-content {
+            background-color: #eef2ff; /* indigo-50 */
+            border-left: 4px solid #4f46e5; /* indigo-600 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: #4338ca; /* indigo-800 */
+        }
+         .ai-content p {
+            margin-bottom: 0.5rem;
+        }
+        .ai-content ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        .loader {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
 
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        /* Dropdown styles */
+        .dropdown-menu {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
 
-        <p class="view"><a href="https://github.com/j0shua">View My GitHub Profile</a></p>
-        <p class="view"><a href="/scroll-to-top.html">Scroll to top demo</a></p>
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="font-googlesans text-xl font-bold text-gray-800">j0shua</div>
+                <nav class="hidden md:flex items-center h-full space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">About</a>
+                    <a href="#experience" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Experience</a>
+                    <!-- Experiments Dropdown -->
+                    <div class="relative group h-full flex items-center">
+                        <a href="#experiments" class="text-gray-600 hover:text-blue-500 transition-colors duration-300 flex items-center">
+                            Experiments
+                            <svg class="w-4 h-4 ml-1 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                        </a>
+                        <div class="absolute left-0 top-full pt-2 w-56 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block dropdown-menu opacity-0 group-hover:opacity-100 transform -translate-y-2 group-hover:translate-y-0">
+                            <a href="#experiments" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-bold">All Projects</a>
+                             <a href="boggle.html" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Boggle Game</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Real-time Dashboard</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cloud Cost Analyzer</a>
+                        </div>
+                    </div>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+    <!-- Main Content -->
+    <main class="pt-16">
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <!-- Hero Section -->
+        <section id="hero" class="container mx-auto px-6 py-20 md:py-32 text-center">
+            <div class="max-w-4xl mx-auto">
+                 <img src="https://placehold.co/128x128/EBF4FF/3B82F6?text=J" alt="j0shua" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-lg">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-4 font-googlesans">Technology & Team Leadership</h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+                    Building and scaling high-performing, people-centric engineering cultures that deliver impactful products.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#experience" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105 shadow-lg">
+                        View My Experience
+                    </a>
+                    <a href="https://www.linkedin.com/in/josh-goldsmith-1274b52b4/" target="_blank" class="bg-white text-gray-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-transform duration-300 transform hover:scale-105 shadow-lg border border-gray-200">
+                        Connect on LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+        <!-- About Section -->
+        <section id="about" class="bg-white py-24">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-4 font-googlesans">My Leadership Philosophy</h2>
+                    <div class="w-24 h-1 bg-blue-500 mx-auto mb-12"></div>
+                    <div id="leadership-philosophy-text">
+                        <p class="text-lg text-gray-600 mb-6 text-left">
+                            As an engineering leader with experience through the Director level, I believe in building teams grounded in trust, autonomy, and a shared passion for solving complex problems. My focus is on creating an environment where engineers can do their best work, fostering both individual growth and collective success.
+                        </p>
+                        <p class="text-lg text-gray-600 text-left">
+                            I thrive on translating business strategy into technical reality, ensuring that we're not just building features, but building the right things, the right way. I champion clear communication, data-informed decisions, and a culture of continuous improvement to drive results and build resilient, scalable systems.
+                        </p>
+                    </div>
+                    <div class="text-center mt-8">
+                         <button id="summarize-philosophy-btn" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition-transform duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center mx-auto gap-2">
+                            <span class="btn-text">✨ Summarize with AI</span>
+                            <span class="loader hidden"></span>
+                        </button>
+                    </div>
+                    <div id="philosophy-summary" class="hidden"></div>
+                </div>
+            </div>
+        </section>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+        <!-- Experience Section -->
+        <section id="experience" class="py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4 font-googlesans">Career Journey</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-16"></div>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+                <div class="max-w-3xl mx-auto">
+                    <!-- Timeline Start -->
+                    <div class="relative" id="experience-timeline">
+                         <!-- Timeline Item 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <p class="text-sm font-semibold text-blue-500 mb-1">May 2024 - Apr 2025</p>
+                            <h3 class="text-xl font-bold mb-2">Senior Software Engineer</h3>
+                            <h4 class="text-lg font-medium text-gray-600 mb-3">OBMedia, LLC</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Placeholder for your key achievement or responsibility.</li>
+                                <li>Example: Led the development of a new ad-tech platform feature.</li>
+                            </ul>
+                        </div>
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <p class="text-sm font-semibold text-blue-500 mb-1">Sep 2019 - Apr 2024</p>
+                            <h3 class="text-xl font-bold mb-2">Director of Engineering</h3>
+                            <h4 class="text-lg font-medium text-gray-600 mb-3">Sony Music Entertainment</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Placeholder: Grew the engineering department and oversaw technical strategy.</li>
+                                <li>Placeholder: Managed multiple teams to deliver on the product roadmap.</li>
+                                <li>Placeholder: Drove initiatives to improve system architecture and developer productivity.</li>
+                            </ul>
+                        </div>
+                        <!-- Timeline Item 3 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                             <p class="text-sm font-semibold text-blue-500 mb-1">Feb 2015 - Apr 2019</p>
+                            <h3 class="text-xl font-bold mb-2">Engineering Manager</h3>
+                            <h4 class="text-lg font-medium text-gray-600 mb-3">LiveIntent, a Zeta Global Company</h4>
+                             <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Placeholder: Led a team of engineers in building and maintaining core products.</li>
+                                 <li>Placeholder: Implemented agile methodologies to improve team performance.</li>
+                            </ul>
+                        </div>
+                         <!-- Timeline Item 4 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                             <p class="text-sm font-semibold text-blue-500 mb-1">Nov 2013 - Nov 2014</p>
+                            <h3 class="text-xl font-bold mb-2">Software Development Manager</h3>
+                            <h4 class="text-lg font-medium text-gray-600 mb-3">Discovery Inc</h4>
+                             <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Placeholder: Managed a team focused on developing media-centric web applications.</li>
+                            </ul>
+                        </div>
+                         <!-- Timeline Item 5 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                             <p class="text-sm font-semibold text-blue-500 mb-1">Apr 2013 - Nov 2013</p>
+                            <h3 class="text-xl font-bold mb-2">Platform Architect</h3>
+                            <h4 class="text-lg font-medium text-gray-600 mb-3">Business Insider</h4>
+                             <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Placeholder: Designed and architected scalable systems for a high-traffic media site.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Timeline End -->
+                    <div class="text-center mt-8">
+                         <button id="summarize-career-btn" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition-transform duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center mx-auto gap-2">
+                            <span class="btn-text">✨ Generate Career Highlights</span>
+                            <span class="loader hidden"></span>
+                        </button>
+                    </div>
+                    <div id="career-summary" class="hidden"></div>
+                </div>
+            </div>
+        </section>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+        <!-- Experiments Section -->
+        <section id="experiments" class="bg-white py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4 font-googlesans">Experiments & Projects</h2>
+                 <div class="w-24 h-1 bg-blue-500 mx-auto mb-16"></div>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Project Card 1: Boggle Game -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Boggle Game</h3>
+                            <p class="text-gray-600 mb-4">A classic Boggle game built with vanilla JavaScript and Tailwind CSS. Test your vocabulary against the clock!
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">HTML</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">JavaScript</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">TailwindCSS</span>
+                            </div>
+                            <div class="flex justify-end space-x-3">
+                                <a href="boggle.html" target="_blank" class="text-blue-500 hover:text-blue-700 font-semibold">Play the Game</a>
+                                <a href="https://github.com/j0shua" target="_blank" class="text-blue-500 hover:text-blue-700 font-semibold">View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Real-time Dashboard</h3>
+                            <p class="text-gray-600 mb-4">A proof-of-concept for visualizing real-time data streams using WebSockets and D3.js for charting.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Node.js</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">D3.js</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">WebSockets</span>
+                            </div>
+                             <div class="flex justify-end space-x-3">
+                                <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Live Demo</a>
+                                <a href="https://github.com/j0shua" target="_blank" class="text-blue-500 hover:text-blue-700 font-semibold">View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Cloud Cost Analyzer</h3>
+                            <p class="text-gray-600 mb-4">A personal CLI tool built with Python to parse cloud provider billing files and identify cost-saving opportunities.</p>
+                             <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">CLI</span>
+                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Data Parsing</span>
+                            </div>
+                             <div class="flex justify-end space-x-3">
+                                <a href="https://github.com/j0shua" target="_blank" class="text-blue-500 hover:text-blue-700 font-semibold">View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="bg-gray-800 text-white py-20">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl font-bold text-center mb-4 font-googlesans">Let's Connect</h2>
+                 <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+                    I'm currently seeking a new role as a Director or Senior Director of Engineering. If you're looking for a passionate leader to help scale your team and technology, I'd love to talk.
+                </p>
+                <div class="flex justify-center items-center space-x-6">
+                    <a href="mailto:your.email@example.com" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105 shadow-lg">
+                        your.email@example.com
+                    </a>
+                </div>
+                 <div class="mt-12 flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/josh-goldsmith-1274b52b4/" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                    </a>
+                     <a href="https://github.com/j0shua" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+    </main>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+    <!-- Footer -->
+    <footer class="bg-white py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            &copy; 2024 j0shua. All Rights Reserved.
+        </div>
+    </footer>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+    <script>
+        // --- Gemini API Integration ---
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+        // Helper function to toggle button loading state
+        const toggleLoading = (button, isLoading) => {
+            const btnText = button.querySelector('.btn-text');
+            const loader = button.querySelector('.loader');
+            if (isLoading) {
+                btnText.classList.add('hidden');
+                loader.classList.remove('hidden');
+                button.disabled = true;
+            } else {
+                btnText.classList.remove('hidden');
+                loader.classList.add('hidden');
+                button.disabled = false;
+            }
+        };
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+        // Helper function to call the Gemini API
+        async function callGemini(prompt) {
+            const apiKey = ""; // API Key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{
+                    role: "user",
+                    parts: [{ text: prompt }]
+                }]
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    // Simple Markdown to HTML conversion
+                    let text = result.candidates[0].content.parts[0].text;
+                    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
+                    text = text.replace(/\n\s?\*\s/g, '</li><li>'); // List items
+                    text = text.replace(/<\/li><li>/g, '</li><li>');
+                    text = `<ul><li>${text}</li></ul>`;
+                    text = text.replace(/<\/li><\/ul>/, '</ul>');
+                    text = text.replace(/\n/g, '<br>');
+                    return text;
+                } else {
+                    return "<p>Sorry, the AI couldn't generate a response. Please try again.</p>";
+                }
+            } catch (error) {
+                console.error("Gemini API call error:", error);
+                return `<p>An error occurred while contacting the AI service: ${error.message}</p>`;
+            }
+        }
+
+        // --- Feature 1: Summarize Leadership Philosophy ---
+        const summarizePhilosophyBtn = document.getElementById('summarize-philosophy-btn');
+        const philosophyTextElement = document.getElementById('leadership-philosophy-text');
+        const philosophySummaryContainer = document.getElementById('philosophy-summary');
+
+        summarizePhilosophyBtn.addEventListener('click', async () => {
+            toggleLoading(summarizePhilosophyBtn, true);
+            philosophySummaryContainer.classList.remove('hidden');
+            philosophySummaryContainer.innerHTML = '<div class="ai-content"><p>✨ AI is thinking...</p></div>';
+
+            const philosophyText = philosophyTextElement.innerText;
+            const prompt = `Based on the following leadership philosophy, generate a concise summary as 3-4 bullet points highlighting the key principles. Keep the tone professional and impactful. The philosophy is: "${philosophyText}"`;
+            
+            const summary = await callGemini(prompt);
+            
+            philosophySummaryContainer.innerHTML = `<div class="ai-content">${summary}</div>`;
+            toggleLoading(summarizePhilosophyBtn, false);
+        });
+
+        // --- Feature 2: Generate Career Highlights ---
+        const summarizeCareerBtn = document.getElementById('summarize-career-btn');
+        const experienceTimelineElement = document.getElementById('experience-timeline');
+        const careerSummaryContainer = document.getElementById('career-summary');
+
+        summarizeCareerBtn.addEventListener('click', async () => {
+            toggleLoading(summarizeCareerBtn, true);
+            careerSummaryContainer.classList.remove('hidden');
+            careerSummaryContainer.innerHTML = '<div class="ai-content"><p>✨ AI is analyzing the journey...</p></div>';
+
+            const experienceItems = experienceTimelineElement.querySelectorAll('.timeline-item');
+            let experienceText = '';
+            experienceItems.forEach(item => {
+                experienceText += item.innerText + '\n\n';
+            });
+
+            const prompt = `Analyze the following career journey and generate a short, 2-3 sentence summary highlighting the key themes of progression, leadership growth, technical impact, and team scaling. Make it sound like a compelling professional bio summary. The career journey is: "${experienceText}"`;
+
+            const summary = await callGemini(prompt);
+            careerSummaryContainer.innerHTML = `<div class="ai-content">${summary.replace(/<ul><li>|<\/li><\/ul>|<br>/g, '')}</div>`; // Clean up for paragraph
+            toggleLoading(summarizeCareerBtn, false);
+        });
+
+    </script>
+
+</body>
 </html>
