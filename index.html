@@ -40,42 +40,6 @@
             border: 2px solid #3b82f6; /* blue-500 */
             border-radius: 50%;
         }
-        /* Style for the AI generated content */
-        .ai-content {
-            background-color: #eef2ff; /* indigo-50 */
-            border-left: 4px solid #4f46e5; /* indigo-600 */
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1.5rem;
-            font-style: italic;
-            color: #4338ca; /* indigo-800 */
-        }
-         .ai-content p {
-            margin-bottom: 0.5rem;
-        }
-        .ai-content ul {
-            list-style-position: inside;
-            padding-left: 1rem;
-        }
-        .loader {
-            width: 24px;
-            height: 24px;
-            border: 3px solid #FFF;
-            border-bottom-color: transparent;
-            border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
-        }
-
-        @keyframes rotation {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
         /* Dropdown styles */
         .dropdown-menu {
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -99,10 +63,9 @@
                             <svg class="w-4 h-4 ml-1 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
                         </a>
                         <div class="absolute left-0 top-full pt-2 w-56 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block dropdown-menu opacity-0 group-hover:opacity-100 transform -translate-y-2 group-hover:translate-y-0">
-                            <a href="#experiments" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-bold">All Projects</a>
                              <a href="boggle.html" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Boggle Game</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Real-time Dashboard</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cloud Cost Analyzer</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lights Out</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Emojify Site</a>
                         </div>
                     </div>
                     <a href="#contact" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Contact</a>
@@ -147,13 +110,6 @@
                             I thrive on translating business strategy into technical reality, ensuring that we're not just building features, but building the right things, the right way. I champion clear communication, data-informed decisions, and a culture of continuous improvement to drive results and build resilient, scalable systems.
                         </p>
                     </div>
-                    <div class="text-center mt-8">
-                         <button id="summarize-philosophy-btn" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition-transform duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center mx-auto gap-2">
-                            <span class="btn-text">✨ Summarize with AI</span>
-                            <span class="loader hidden"></span>
-                        </button>
-                    </div>
-                    <div id="philosophy-summary" class="hidden"></div>
                 </div>
             </div>
         </section>
@@ -223,13 +179,6 @@
                         </div>
                     </div>
                     <!-- Timeline End -->
-                    <div class="text-center mt-8">
-                         <button id="summarize-career-btn" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition-transform duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center mx-auto gap-2">
-                            <span class="btn-text">✨ Generate Career Highlights</span>
-                            <span class="loader hidden"></span>
-                        </button>
-                    </div>
-                    <div id="career-summary" class="hidden"></div>
                 </div>
             </div>
         </section>
@@ -258,33 +207,34 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Project Card 2 -->
+                    <!-- Project Card 2: Lights Out -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Real-time Dashboard</h3>
-                            <p class="text-gray-600 mb-4">A proof-of-concept for visualizing real-time data streams using WebSockets and D3.js for charting.</p>
+                            <h3 class="text-xl font-bold mb-2">Lights Out</h3>
+                            <p class="text-gray-600 mb-4">A logic puzzle game where the goal is to switch all the lights off. Built with JavaScript and CSS grid.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Node.js</span>
-                                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">D3.js</span>
-                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">WebSockets</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">JavaScript</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">CSS</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">HTML</span>
                             </div>
                              <div class="flex justify-end space-x-3">
-                                <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Live Demo</a>
+                                <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Play the Game</a>
                                 <a href="https://github.com/j0shua" target="_blank" class="text-blue-500 hover:text-blue-700 font-semibold">View on GitHub</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Project Card 3 -->
+                    <!-- Project Card 3: Emojify Site -->
                      <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Cloud Cost Analyzer</h3>
-                            <p class="text-gray-600 mb-4">A personal CLI tool built with Python to parse cloud provider billing files and identify cost-saving opportunities.</p>
+                            <h3 class="text-xl font-bold mb-2">Emojify Site</h3>
+                            <p class="text-gray-600 mb-4">A fun tool that uses a third-party API to convert your text into a string of corresponding emojis.</p>
                              <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Python</span>
-                                <span class="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">CLI</span>
-                                 <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Data Parsing</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">JavaScript</span>
+                                <span class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">API</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">HTML</span>
                             </div>
                              <div class="flex justify-end space-x-3">
+                                 <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Try it Out</a>
                                 <a href="https://github.com/j0shua" target="_blank" class="text-blue-500 hover:text-blue-700 font-semibold">View on GitHub</a>
                             </div>
                         </div>
@@ -301,8 +251,8 @@
                     I'm currently seeking a new role as a Director or Senior Director of Engineering. If you're looking for a passionate leader to help scale your team and technology, I'd love to talk.
                 </p>
                 <div class="flex justify-center items-center space-x-6">
-                    <a href="mailto:your.email@example.com" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105 shadow-lg">
-                        your.email@example.com
+                    <a href="https://www.linkedin.com/in/josh-goldsmith-1274b52b4/" target="_blank" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105 shadow-lg">
+                        Message on LinkedIn
                     </a>
                 </div>
                  <div class="mt-12 flex justify-center space-x-6">
@@ -325,112 +275,6 @@
         </div>
     </footer>
 
-    <script>
-        // --- Gemini API Integration ---
-
-        // Helper function to toggle button loading state
-        const toggleLoading = (button, isLoading) => {
-            const btnText = button.querySelector('.btn-text');
-            const loader = button.querySelector('.loader');
-            if (isLoading) {
-                btnText.classList.add('hidden');
-                loader.classList.remove('hidden');
-                button.disabled = true;
-            } else {
-                btnText.classList.remove('hidden');
-                loader.classList.add('hidden');
-                button.disabled = false;
-            }
-        };
-
-        // Helper function to call the Gemini API
-        async function callGemini(prompt) {
-            const apiKey = ""; // API Key is handled by the environment
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-            
-            const payload = {
-                contents: [{
-                    role: "user",
-                    parts: [{ text: prompt }]
-                }]
-            };
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API call failed with status: ${response.status}`);
-                }
-
-                const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    // Simple Markdown to HTML conversion
-                    let text = result.candidates[0].content.parts[0].text;
-                    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
-                    text = text.replace(/\n\s?\*\s/g, '</li><li>'); // List items
-                    text = text.replace(/<\/li><li>/g, '</li><li>');
-                    text = `<ul><li>${text}</li></ul>`;
-                    text = text.replace(/<\/li><\/ul>/, '</ul>');
-                    text = text.replace(/\n/g, '<br>');
-                    return text;
-                } else {
-                    return "<p>Sorry, the AI couldn't generate a response. Please try again.</p>";
-                }
-            } catch (error) {
-                console.error("Gemini API call error:", error);
-                return `<p>An error occurred while contacting the AI service: ${error.message}</p>`;
-            }
-        }
-
-        // --- Feature 1: Summarize Leadership Philosophy ---
-        const summarizePhilosophyBtn = document.getElementById('summarize-philosophy-btn');
-        const philosophyTextElement = document.getElementById('leadership-philosophy-text');
-        const philosophySummaryContainer = document.getElementById('philosophy-summary');
-
-        summarizePhilosophyBtn.addEventListener('click', async () => {
-            toggleLoading(summarizePhilosophyBtn, true);
-            philosophySummaryContainer.classList.remove('hidden');
-            philosophySummaryContainer.innerHTML = '<div class="ai-content"><p>✨ AI is thinking...</p></div>';
-
-            const philosophyText = philosophyTextElement.innerText;
-            const prompt = `Based on the following leadership philosophy, generate a concise summary as 3-4 bullet points highlighting the key principles. Keep the tone professional and impactful. The philosophy is: "${philosophyText}"`;
-            
-            const summary = await callGemini(prompt);
-            
-            philosophySummaryContainer.innerHTML = `<div class="ai-content">${summary}</div>`;
-            toggleLoading(summarizePhilosophyBtn, false);
-        });
-
-        // --- Feature 2: Generate Career Highlights ---
-        const summarizeCareerBtn = document.getElementById('summarize-career-btn');
-        const experienceTimelineElement = document.getElementById('experience-timeline');
-        const careerSummaryContainer = document.getElementById('career-summary');
-
-        summarizeCareerBtn.addEventListener('click', async () => {
-            toggleLoading(summarizeCareerBtn, true);
-            careerSummaryContainer.classList.remove('hidden');
-            careerSummaryContainer.innerHTML = '<div class="ai-content"><p>✨ AI is analyzing the journey...</p></div>';
-
-            const experienceItems = experienceTimelineElement.querySelectorAll('.timeline-item');
-            let experienceText = '';
-            experienceItems.forEach(item => {
-                experienceText += item.innerText + '\n\n';
-            });
-
-            const prompt = `Analyze the following career journey and generate a short, 2-3 sentence summary highlighting the key themes of progression, leadership growth, technical impact, and team scaling. Make it sound like a compelling professional bio summary. The career journey is: "${experienceText}"`;
-
-            const summary = await callGemini(prompt);
-            careerSummaryContainer.innerHTML = `<div class="ai-content">${summary.replace(/<ul><li>|<\/li><\/ul>|<br>/g, '')}</div>`; // Clean up for paragraph
-            toggleLoading(summarizeCareerBtn, false);
-        });
-
-    </script>
-
 </body>
 </html>
+
