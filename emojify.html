@@ -77,8 +77,8 @@
     </div>
 
     <script>
-        // URL to a reliable, raw JSON file on GitHub from the official 'gemoji' repository
-        const DICTIONARY_URL = 'https://github.com/github/gemoji/raw/master/db/emoji.json';
+        // URL is now pointing to a local file.
+        const DICTIONARY_URL = './emoji.json';
 
         // Get references to our HTML elements
         const textInput = document.getElementById('text-input');
@@ -94,7 +94,7 @@
                 textInput.disabled = true;
                 textInput.placeholder = "Loading emoji dictionary...";
 
-                // Use fetch to get the data from the reliable source
+                // Use fetch to get the data from the local file
                 const response = await fetch(DICTIONARY_URL);
                 
                 // If the network response is not successful, throw an error
