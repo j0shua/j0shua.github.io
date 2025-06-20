@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emojify Translator</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .app-container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        #text-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        #text-input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        #text-input:disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+        #output-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            min-height: 60px;
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            font-size: 2rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>Emojify Translator 📝➡️😀</h1>
+        <p>Type a sentence and press Enter to see the magic!</p>
+        
+        <input type="text" id="text-input" placeholder="Loading emoji dictionary...">
+        
+        <div id="output-container">
+            Your emoji translation will appear here.
+        </div>
+    </div>
+
+    <script>
+        // URL to a reliable, raw JSON file on GitHub from the official 'gemoji' repository
+        const DICTIONARY_URL = 'https://github.com/github/gemoji/raw/master/db/emoji.json';
+
+        // Get references to our HTML elements
+        const textInput = document.getElementById('text-input');
+        const outputContainer = document.getElementById('output-container');
+
+        // This will hold our final word -> emoji mapping.
+        let emojiMap = {};
+
+        // Async function to load and process the dictionary
+        async function loadDictionary() {
+            try {
+                // Set a loading state in the UI
+                textInput.disabled = true;
+                textInput.placeholder = "Loading emoji dictionary...";
+
+                // Use fetch to get the data from the reliable source
+                const response = await fetch(DICTIONARY_URL);
+                
+                // If the network response is not successful, throw an error
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                
+                // Parse the response body as JSON
+                const emojiData = await response.json();
+
+                // Process the fetched data into the key-value format we need
+                // The data is an array of objects, each with an 'aliases' array.
+                emojiData.forEach(emojiInfo => {
+                    if (emojiInfo.aliases) {
+                        emojiInfo.aliases.forEach(alias => {
+                            emojiMap[alias.toLowerCase()] = emojiInfo.emoji;
+                        });
+                    }
+                });
+
+                // --- Handle Success ---
+                console.log("Emoji dictionary loaded and processed successfully!");
+                textInput.disabled = false;
+                textInput.placeholder = "The quick brown fox jumps over the lazy dog...";
+
+            } catch (error) {
+                // --- Handle Errors ---
+                console.error('Failed to load emoji dictionary:', error);
+                outputContainer.textContent = "❌ Error: Could not load the dictionary.";
+                textInput.placeholder = "Dictionary failed to load.";
+                textInput.disabled = true; // Keep it disabled if it fails
+            }
+        }
+
+        // Event listener for translating text
+        textInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const inputText = textInput.value.toLowerCase();
+                const words = inputText.split(/\s+/);
+                
+                const translatedWords = words.map(word => {
+                    const cleanWord = word.replace(/[.,!?;:]/g, '');
+                    return emojiMap[cleanWord] || word;
+                });
+                
+                const outputText = translatedWords.join(' ');
+                outputContainer.textContent = outputText;
+            }
+        });
+        
+        // Call the function to start loading the data as soon as the page loads
+        loadDictionary();
+
+    </script>
+</body>
+</html>
